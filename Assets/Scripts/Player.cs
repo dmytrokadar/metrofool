@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
         Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, movement.x, 0) * rotationSpeed * Time.fixedDeltaTime);
         // Vector3 deltaRotation = new Vector3(0, movement.x, 0) * rotationSpeed *Time.fixedDeltaTime;
         rb.MoveRotation(rb.rotation * deltaRotation);
-        rb.MovePosition(rb.position + new Vector3(0, 0, movement.y) /*rb.rotation * movement.y*/ * moveSpeed * Time.fixedDeltaTime);
+        Vector3 moveDirection = new Vector3(movement.y, 0, movement.y);
+        // moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection = rb.rotation * moveDirection;
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 }
