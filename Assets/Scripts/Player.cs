@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject keyText;
     [SerializeField] private GameObject doorText;
     [SerializeField] private GameObject noteText;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject looseScreen;
     [SerializeField] private GameObject[] notes;
 
     void Start(){
@@ -121,6 +123,9 @@ public class Player : MonoBehaviour
                 Destroy(oth.gameObject);
                 openDoor = false;
                 doorText.SetActive(false);
+                if(oth.gameObject.GetComponent<Door>().keyType == PickableObject.PickableType.keyYellow){
+                    winScreen.SetActive(true);
+                }
             }
         } else if(openNote){
             notes[(int)oth.gameObject.GetComponent<Note>().noteNum].SetActive(true);
