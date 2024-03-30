@@ -2,23 +2,83 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static PickableObject;
 
 public class Player : MonoBehaviour
 {
     private Vector2 movement;
+    private InputValue vv;
+    private bool pick;
     private Rigidbody rb;
+    private bool pickKey = false;
+    private Collider oth;
+    // private bool isRedKey = false;
+    // private bool isGreenKey = false;
+    // private bool isYellowKey = false;
+    private Dictionary<PickableObject.PickableType, bool> keys = new Dictionary<PickableObject.PickableType, bool>();
+    [SerializeField] private int health = 100;
     [SerializeField] private float camOffset = -7;
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float rotationSpeed = 1;
     [SerializeField] private GameObject cam;
+    [SerializeField] private GameObject redText;
+    [SerializeField] private GameObject greenText;
+    [SerializeField] private GameObject yellowText;
 
     void Start(){
         camOffset = cam.transform.position.x;
         rb = GetComponent<Rigidbody>();
+        EnableText();
     }
 
     private void OnMovement(InputValue val){
         movement = val.Get<Vector2>();
+    }
+
+    private void EnableText(){
+        if(keys.ContainsKey(PickableObject.PickableType.keyRed)){
+            redText.SetActive(true);
+        }
+        if(keys.ContainsKey(PickableObject.PickableType.keyGreen)){
+            greenText.SetActive(true);
+        }
+        if(keys.ContainsKey(PickableObject.PickableType.keyYellow)){
+            yellowText.SetActive(true);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other){
+        UnityEngine.Debug.Log("collision ");
+        if(other.gameObject.GetComponent<PickableObject>() != null){
+            if(other.gameObject.GetComponent<PickableObject>().PType != PickableType.card){
+                oth = other;
+                pickKey = true;
+            }
+            else {
+                pickKey = false;
+            }
+        }
+    }
+
+    private void OnPick(InputValue val){
+        // if(context.performed || context.started)
+        //     pick = true;
+        // else
+        //     pick = false;
+        vv = val;
+        Debug.Log("pick " + val);
+        if(pickKey){
+            keys[oth.gameObject.GetComponent<PickableObject>().PType] = true;
+            Destroy(oth.gameObject);
+            EnableText();
+        }
+    }
+
+    private void DecreaseHealth(int ammount){
+        health = health - ammount;
+        if(health <= 0){
+            //TODO gameover
+        }
     }
 
     void FixedUpdate(){
