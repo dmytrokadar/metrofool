@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PickableObject;
+using static Door;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     private bool pick;
     private Rigidbody rb;
     private bool pickKey = false;
+    private bool openDoor = false;
+    private bool openNote = false;
     private Collider oth;
     // private bool isRedKey = false;
     // private bool isGreenKey = false;
@@ -24,6 +27,10 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject redText;
     [SerializeField] private GameObject greenText;
     [SerializeField] private GameObject yellowText;
+    [SerializeField] private GameObject keyText;
+    [SerializeField] private GameObject doorText;
+    [SerializeField] private GameObject noteText;
+    [SerializeField] private GameObject[] notes;
 
     void Start(){
         camOffset = cam.transform.position.x;
@@ -48,17 +55,53 @@ public class Player : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other){
-        UnityEngine.Debug.Log("collision ");
+        // UnityEngine.Debug.Log("collision ");
         if(other.gameObject.GetComponent<PickableObject>() != null){
             if(other.gameObject.GetComponent<PickableObject>().PType != PickableType.card){
                 oth = other;
                 pickKey = true;
+                keyText.SetActive(true);
             }
             else {
                 pickKey = false;
             }
         }
+
+        if(other.gameObject.GetComponent<Door>() != null){
+            oth = other;
+            openDoor = true;
+            doorText.SetActive(true);
+        } else {
+            openDoor = false;
+        }
+
+        if(other.gameObject.GetComponent<Note>() != null){
+            oth = other;
+            openNote = true;
+            noteText.SetActive(true);
+        } else {
+            openNote = false;
+        }
     }
+
+    private void OnTriggerExit(Collider other) {
+        pickKey = false;
+        openDoor = false;
+        openNote = false;
+        keyText.SetActive(false);
+        doorText.SetActive(false);
+        noteText.SetActive(false);
+    }
+
+    // public void OnCollisionEnter(Collider other){
+    //     Debug.Log("col");
+    //     if(other.gameObject.GetComponent<Door>() != null){
+    //         oth = other;
+    //         openDoor = true;
+    //     } else {
+    //         openDoor = false;
+    //     }
+    // }
 
     private void OnPick(InputValue val){
         // if(context.performed || context.started)
@@ -66,12 +109,28 @@ public class Player : MonoBehaviour
         // else
         //     pick = false;
         vv = val;
-        Debug.Log("pick " + val);
+        // Debug.Log("pick " + val);
         if(pickKey){
             keys[oth.gameObject.GetComponent<PickableObject>().PType] = true;
             Destroy(oth.gameObject);
             EnableText();
+            pickKey = false;
+            keyText.SetActive(false);
+        } else if(openDoor){
+            if(keys.ContainsKey(oth.gameObject.GetComponent<Door>().keyType)){
+                Destroy(oth.gameObject);
+                openDoor = false;
+                doorText.SetActive(false);
+            }
+        } else if(openNote){
+            notes[(int)oth.gameObject.GetComponent<Note>().noteNum].SetActive(true);
+            openNote = false;
+            noteText.SetActive(false);
         }
+    }
+
+    public void CloseNote(GameObject go){
+        go.SetActive(false);
     }
 
     private void DecreaseHealth(int ammount){
