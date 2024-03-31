@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     // private bool isYellowKey = false;
     private Dictionary<PickableObject.PickableType, bool> keys = new Dictionary<PickableObject.PickableType, bool>();
     [SerializeField] private int health = 100;
-    [SerializeField] private float camOffset = -7;
+    [SerializeField] private float camOffset = -11;
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float rotationSpeed = 1;
     [SerializeField] private GameObject cam;
@@ -129,8 +129,8 @@ public class Player : MonoBehaviour
             }
         } else if(openNote){
             notes[(int)oth.gameObject.GetComponent<Note>().noteNum].SetActive(true);
-            openNote = false;
-            noteText.SetActive(false);
+            // openNote = false;
+            // noteText.SetActive(false);
         }
     }
 
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, movement.x, 0) * rotationSpeed * Time.fixedDeltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
 
-        Vector3 moveDirection = new Vector3(movement.y, 0, movement.y);
+        Vector3 moveDirection = new Vector3(0, 0, movement.y);
         moveDirection = rb.rotation * moveDirection;
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
