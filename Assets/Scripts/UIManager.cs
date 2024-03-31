@@ -16,4 +16,12 @@ public class UIManager : MonoBehaviour
     public void ChangeScene(string scName){
         SceneManager.LoadScene(scName, LoadSceneMode.Single);
     }
+
+    public void OnClickOpenTutorial(GameObject gameObject){
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    public void OnClickCloseWindow(GameObject gameObject){
+        gameObject.SetActive(false);    
+    }
 }

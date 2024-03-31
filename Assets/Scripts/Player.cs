@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject noteText;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject looseScreen;
+    [SerializeField] private GameObject tutorialScreen;
     [SerializeField] private GameObject[] notes;
 
     void Start(){
@@ -132,6 +133,13 @@ public class Player : MonoBehaviour
             // openNote = false;
             // noteText.SetActive(false);
         }
+    }
+
+    private void OnTutorial(InputValue val){
+        tutorialScreen.SetActive(!tutorialScreen.activeSelf);
+    }
+    private void OnCloseGame(InputValue val){
+        Application.Quit();
     }
 
     public void CloseNote(GameObject go){
