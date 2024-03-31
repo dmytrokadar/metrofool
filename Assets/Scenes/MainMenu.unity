@@ -1237,6 +1237,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1429955054}
     m_Modifications:
+    - target: {fileID: 3453306912297664046, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453306912297664046, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453306912297664046, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4814482164983669420, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1317,6 +1329,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5452028651067541039, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
+      propertyPath: m_text
+      value: "///////////////CONTROLS////////////////////\r\nW - FORWARD\r\nA  -
+        LEFT\r\nS  - BACK\r\nD  - RIGHT\r\nE-  COLLECT THE ITEM\r\nT - SHOW THIS
+        TUTORIAL IN GAME\r\nYOU NEED TO FIND KEY TO OPEN THE DOOR\nYOU CAN READ NOTES\n////////////////HOW
+        TO FIGHT IN THE ///////////////////\r\nThere are two suits - red and black
+        hearts. The card values are 6, 7, 8, 9, 10.\r\nBoth the player and the opponent
+        have 5 \"life points\".\r\nEach player and the opponent have a total of 5
+        cards. They are randomly discarded. The opponent doesn't take turns, only
+        the player does.\r\n\rThe battle occurs in 5 stages:\r\n1. The player lays
+        down a card.\r\n2. The opponent lays down their random card.\r\n3. The cards
+        are compared.\r\n4. The outcome of the comparison is:\r\n   - Black + black
+        or red + red = the player with the higher-valued card wins.\r\n   - Black
+        + red or red + black = the player with the lower-valued card wins.\r\n  
+        - IF THE CARDS HAVE THE SAME VALUE, THE PLAYER STILL WINS.\r\n5. The player
+        or opponent takes damage.\r\n6. Repeat until cards are exhausted.\r\n   Upon
+        winning, the player's \"life points\" are fully restored.\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 5897871697742014179, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1324,6 +1354,10 @@ PrefabInstance:
     - target: {fileID: 6656340842533986675, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
       propertyPath: m_Name
       value: Turotial
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656340842533986675, guid: 98efb604af1af5f43a4613e15c06bef9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

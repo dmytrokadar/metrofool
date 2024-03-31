@@ -1880,7 +1880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -282.4, y: 191.8}
+  m_AnchoredPosition: {x: -281.1, y: 196.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779311604
@@ -1904,8 +1904,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "///////////////CONTROLS////////////////////\r\nW - FORWARD\r\nA  - LEFT\r\nS 
-    - BACK\r\nD  - RIGHT\r\nE-  COLLECT THE ITEM\r\nT - SHOW THIS TUTORIAL IN GAME\r\n////////////////HOW
-    TO FIGHT IN THE ///////////////////\r\nThere are two suits - red and black hearts.
+    - BACK\r\nD  - RIGHT\r\nE-  COLLECT THE ITEM\r\nT - SHOW THIS TUTORIAL IN GAME\r\nYOU
+    NEED TO FIND KEY TO OPEN THE DOOR\nYOU CAN READ NOTES\n////////////////HOW TO
+    FIGHT IN THE ///////////////////\r\nThere are two suits - red and black hearts.
     The card values are 6, 7, 8, 9, 10.\r\nBoth the player and the opponent have
     5 \"life points\".\r\nEach player and the opponent have a total of 5 cards. They
     are randomly discarded. The opponent doesn't take turns, only the player does.\r\n\rThe
