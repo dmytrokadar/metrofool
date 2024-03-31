@@ -19,9 +19,9 @@ public class MenuManager : MonoBehaviour
     {
         Confirmator.instance.Show(() =>
             {
-                if (Application.isEditor)
-                    EditorApplication.ExitPlaymode();
-                else
+                // if (Application.isEditor)
+                //     EditorApplication.ExitPlaymode();
+                // else
                     Application.Quit();
             }, () => {},
             title_s: "Quit game?",
